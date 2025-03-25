@@ -14,13 +14,15 @@ def main (page: ft.Page):
         letrasMi = "abcdefghijklmnopqrstuvwxyz"
         numeros = "0123456789"
         simbolos = "!@#$%&*()_+"
-        param = letrasMi
+        param = numeros # default case
         senha = ""
 
-        
+        # if(not(cNumbers.value)):
+        #     param = ""
+        param = numeros if(cNumbers.value) else ""
         param += simbolos if(cSymbols.value) else ""
-        param += numeros if(cNumbers.value) else ""
-        param += letrasMa if(cAllLetters.value) else ""
+        param += letrasMa if(cLettersMa.value) else ""
+        param += letrasMi if(cLettersMi.value) else ""
         
         for i in range(num):
             senha += random.choice(param)
@@ -32,7 +34,7 @@ def main (page: ft.Page):
         senha.value = criadorSenhas(int(qntdElements.value))
         print("Função funcionando externamente!", senha) # test no terminal
 
-        page.remove(qntdElements, cSymbols, cNumbers, cAllLetters, btnSend)
+        page.remove(qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend)
         page.add(senha)
         textPage.value = "Senha gerada:"
 
@@ -46,7 +48,8 @@ def main (page: ft.Page):
     qntdElements = ft.TextField(label="Digite o tamaho da senha")
     cSymbols = ft.Checkbox(label="Deve conter símbolos")
     cNumbers = ft.Checkbox(label="Deve conter números")
-    cAllLetters = ft.Checkbox(label="Deve conter todas as letras, maiúsculas e minúsculas")
+    cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas")
+    cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas")
     btnSend = ft.Button("Gerar Senha", on_click=gerarSenha)
 
     senha = ft.Text("", size=18, color="white")
@@ -54,6 +57,6 @@ def main (page: ft.Page):
 
 
     #adiciona os elementos na página
-    page.add(titulo,textPage, qntdElements, cSymbols, cNumbers, cAllLetters, btnSend)
+    page.add(titulo,textPage, qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend)
 
 ft.app(main)
