@@ -5,8 +5,8 @@ def main (page: ft.Page):
     page.title = "Pasword Generator"
     page.window.icon = "assets/icon.png"
     page.adaptative = True
-    page.window.height = 650
-    page.window.width = 450
+    page.window.height = 700
+    page.window.width = 500
 
     #funções
 
@@ -41,19 +41,24 @@ def main (page: ft.Page):
         
         senha.value = criadorSenhas(int(qntdElements.value))
 
-        page.remove(qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend)
-        page.add(senha, btnCopy, btnBack)
-        textPage.value = "Senha gerada:"
+        page.remove(line2Base)
+        page.add(line2Updated)
+        textPage.value = "Senha Gerada:"
 
         page.update()
 
     def voltarInicio(e):
-        print("Voltou")
-        pass
+        page.remove(line2Updated)
+        page.add(line2Base)
+        textPage.value = "Informe os parâmetros para gerar a senha:"
+
+        page.update()
         
     # criação dos elementos
     titulo = ft.Text("Password Generator", size=35, color="white")
     btnBack = ft.IconButton(icon=ft.Icons.ARROW_BACK, on_click=voltarInicio)
+    logo = ft.Image("icon.png", width=60, height=60, fit= ft.ImageFit.CONTAIN)
+    divider = ft.Divider() #Terminar o divider
 
     textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white")
     qntdElements = ft.TextField(label="Digite o tamaho da senha")
@@ -66,8 +71,28 @@ def main (page: ft.Page):
     senha = ft.Text("", size=18, color="white")
     btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha) # REVER
 
+    #variáveis de layout
+    lineInicial = ft.Row(
+        [logo,titulo],
+        vertical_alignment= ft.CrossAxisAlignment.CENTER
+    )
+
+    line2Base = ft.Column(
+        [qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend],
+        horizontal_alignment= ft.CrossAxisAlignment.CENTER
+    )
+
+    line2Updated = ft.Column(
+        [ ft.Row([senha, btnCopy], vertical_alignment= ft.CrossAxisAlignment.CENTER), btnBack],
+        horizontal_alignment= ft.CrossAxisAlignment.CENTER
+    )
 
     #adiciona os elementos na página
-    page.add(titulo,textPage, qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend)
+    page.add(lineInicial, textPage, line2Base)
 
 ft.app(main, assets_dir="assets")
+
+#Organizar o layout
+    #ajustar as "paginas"
+#definir cores e fontes
+#fazer a build
