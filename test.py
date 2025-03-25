@@ -1,5 +1,5 @@
 import flet as ft
-import funcoesBrutas as fb
+import random
 
 def main (page: ft.Page):
     page.title = "Pasword Generator"
@@ -9,10 +9,28 @@ def main (page: ft.Page):
 
     #funções
 
-    def gerarSenha(e):
+    def criadorSenhas(num):
+        letrasMa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        letrasMi = "abcdefghijklmnopqrstuvwxyz"
+        numeros = "0123456789"
+        simbolos = "!@#$%&*()_+"
+        param = letrasMi
+        senha = ""
+
         
-        senha.value = fb.criadorSenhas(int(qntdElements.value))
-        print("Função funcionando!", senha) # test no terminal
+        param += simbolos if(cSymbols.value) else ""
+        param += numeros if(cNumbers.value) else ""
+        param += letrasMa if(cAllLetters.value) else ""
+        
+        for i in range(num):
+            senha += random.choice(param)
+
+        return senha
+
+    def gerarSenha(e): # rever o nome da função
+        
+        senha.value = criadorSenhas(int(qntdElements.value))
+        print("Função funcionando externamente!", senha) # test no terminal
 
         page.remove(qntdElements, cSymbols, cNumbers, cAllLetters, btnSend)
         page.add(senha)
