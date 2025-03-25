@@ -36,7 +36,7 @@ def main (page: ft.Page):
 
         page.update()
 
-    def gerarSenha(e): # rever o nome da função
+    def updateProgram(e): # rever o nome da função
         
         senha.value = criadorSenhas(int(qntdElements.value))
 
@@ -56,7 +56,7 @@ def main (page: ft.Page):
     cNumbers = ft.Checkbox(label="Deve conter números")
     cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas")
     cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas")
-    btnSend = ft.Button("Gerar Senha", on_click=gerarSenha)
+    btnSend = ft.Button("Gerar Senha", on_click=updateProgram)
 
     senha = ft.Text("", size=18, color="white")
     btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha) # REVER
@@ -65,4 +65,4 @@ def main (page: ft.Page):
     #adiciona os elementos na página
     page.add(titulo,textPage, qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend)
 
-ft.app(main)
+ft.app(main, assets_dir="assets")
