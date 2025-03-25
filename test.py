@@ -3,6 +3,7 @@ import random
 
 def main (page: ft.Page):
     page.title = "Pasword Generator"
+    page.window.icon = "assets/icon.png"
     page.adaptative = True
     page.window.height = 650
     page.window.width = 450
@@ -50,7 +51,7 @@ def main (page: ft.Page):
     # criação dos elementos
     titulo = ft.Text("Password Generator", size=35, color="white")
 
-    textPage = ft.Text("Informe os parâmetrs para gerar a senha", size=18, color="white")
+    textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white")
     qntdElements = ft.TextField(label="Digite o tamaho da senha")
     cSymbols = ft.Checkbox(label="Deve conter símbolos")
     cNumbers = ft.Checkbox(label="Deve conter números")
