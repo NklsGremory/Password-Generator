@@ -17,8 +17,6 @@ def main (page: ft.Page):
         param = numeros # default case
         senha = ""
 
-        # if(not(cNumbers.value)):
-        #     param = ""
         param = numeros if(cNumbers.value) else ""
         param += simbolos if(cSymbols.value) else ""
         param += letrasMa if(cLettersMa.value) else ""
@@ -27,15 +25,23 @@ def main (page: ft.Page):
         for i in range(num):
             senha += random.choice(param)
 
+        print("Senha Gerada!") # test no terminal
         return senha
+
+    def copiarSenha(e):
+        page.set_clipboard(senha.value)
+        print("Senha copiada!") # test no terminal
+
+        page.open(ft.SnackBar(ft.Text("Senha copiada com sucesso!"), duration=2500))
+
+        page.update()
 
     def gerarSenha(e): # rever o nome da função
         
         senha.value = criadorSenhas(int(qntdElements.value))
-        print("Função funcionando externamente!", senha) # test no terminal
 
         page.remove(qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend)
-        page.add(senha)
+        page.add(senha, btnCopy)
         textPage.value = "Senha gerada:"
 
 
@@ -53,7 +59,7 @@ def main (page: ft.Page):
     btnSend = ft.Button("Gerar Senha", on_click=gerarSenha)
 
     senha = ft.Text("", size=18, color="white")
-    btnCopy = ft.Button() # REVER
+    btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha) # REVER
 
 
     #adiciona os elementos na página
