@@ -37,19 +37,23 @@ def main (page: ft.Page):
 
         page.update()
 
-    def updateProgram(e): # rever o nome da função
+    def updateProgram(e): 
         
         senha.value = criadorSenhas(int(qntdElements.value))
 
         page.remove(qntdElements, cSymbols, cNumbers, cLettersMa, cLettersMi, btnSend)
-        page.add(senha, btnCopy)
+        page.add(senha, btnCopy, btnBack)
         textPage.value = "Senha gerada:"
 
-
         page.update()
+
+    def voltarInicio(e):
+        print("Voltou")
+        pass
         
     # criação dos elementos
     titulo = ft.Text("Password Generator", size=35, color="white")
+    btnBack = ft.IconButton(icon=ft.Icons.ARROW_BACK, on_click=voltarInicio)
 
     textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white")
     qntdElements = ft.TextField(label="Digite o tamaho da senha")
