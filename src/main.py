@@ -8,6 +8,13 @@ def main (page: ft.Page):
     page.window.height = 700
     page.window.width = 500
 
+    #design 
+    colors = {
+        "darkBlue": "#143CCA",
+        "blue": "#0179E8",
+        "green": "#38E7C5"
+    }
+
     #funções
 
     def criadorSenhas(num):
@@ -38,12 +45,15 @@ def main (page: ft.Page):
         page.update()
 
     def updateProgram(e): 
-        
-        senha.value = criadorSenhas(int(qntdElements.value))
+        if(qntdElements.value == ""):
+            page.open(ft.SnackBar(ft.Text("Por favor, informe o tamanho da senha!"), duration=2500))
+            qntdElements.focus()
+        else:
+            senha.value = criadorSenhas(int(qntdElements.value))
 
-        page.remove(line2Base)
-        page.add(line2Updated)
-        textPage.value = "Senha Gerada:"
+            page.remove(line2Base)
+            page.add(line2Updated)
+            textPage.value = "Senha Gerada:"
 
         page.update()
 
@@ -58,15 +68,15 @@ def main (page: ft.Page):
     titulo = ft.Text("Password Generator", size=35, color="white")
     btnBack = ft.IconButton(icon=ft.Icons.ARROW_BACK, on_click=voltarInicio)
     logo = ft.Image("icon.png", width=60, height=60, fit= ft.ImageFit.CONTAIN)
-    divider = ft.Divider() #Terminar o divider
+    divider = ft.Divider(color= colors["blue"], thickness= 3) #Terminar o divider
 
-    textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white")
-    qntdElements = ft.TextField(label="Digite o tamaho da senha")
-    cSymbols = ft.Checkbox(label="Deve conter símbolos")
-    cNumbers = ft.Checkbox(label="Deve conter números")
-    cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas")
-    cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas")
-    btnSend = ft.Button("Gerar Senha", on_click=updateProgram)
+    textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white", width= 480, text_align= ft.TextAlign.CENTER)
+    qntdElements = ft.TextField(label="Digite o tamaho da senha", width=500, border_color="white", focused_border_color= colors["green"])
+    cSymbols = ft.Checkbox(label="Deve conter símbolos", active_color=colors["green"])
+    cNumbers = ft.Checkbox(label="Deve conter números", active_color=colors["green"])
+    cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas", active_color=colors["green"])
+    cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas", active_color=colors["green"])
+    btnSend = ft.ElevatedButton("Gerar Senha", on_click=updateProgram, style = ft.ButtonStyle(text_style= ft.TextStyle(size= 18)), width= 200, height= 50, color=colors["blue"])
 
     senha = ft.Text("", size=18, color="white")
     btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha) # REVER
@@ -75,6 +85,11 @@ def main (page: ft.Page):
     lineInicial = ft.Row(
         [logo,titulo],
         vertical_alignment= ft.CrossAxisAlignment.CENTER
+    )
+
+    textoPagina = ft.Column(
+        [textPage, divider],
+        horizontal_alignment= ft.CrossAxisAlignment.CENTER
     )
 
     line2Base = ft.Column(
@@ -88,10 +103,11 @@ def main (page: ft.Page):
     )
 
     #adiciona os elementos na página
-    page.add(lineInicial, textPage, line2Base)
+    page.add(lineInicial, textoPagina, line2Base)
 
 ft.app(main, assets_dir="assets")
 
+#REVER O CASO DEFAULT  --> ALTA PRIORIDADE
 #Organizar o layout
     #ajustar as "paginas"
 #definir cores e fontes
