@@ -86,12 +86,12 @@ def main (page: ft.Page):
 
     textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white", width= 480, text_align= ft.TextAlign.CENTER)
     slider = ft.Slider(min=4, max=20, divisions=16, label= "{value}", width=450, visible=False, active_color=colors["green"])
-    qntdElements = ft.TextField(label="Digite o tamaho da senha",width=450, border_color="white", focused_border_color= colors["green"])
-    cSymbols = ft.Checkbox(label="Deve conter símbolos", active_color=colors["green"])
-    cNumbers = ft.Checkbox(label="Deve conter números", active_color=colors["green"])
-    cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas", active_color=colors["green"])
-    cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas", active_color=colors["green"])
-    btnSend = ft.ElevatedButton("Gerar Senha", on_click=updateProgram, style = ft.ButtonStyle(text_style= ft.TextStyle(size= 18), shadow_color= colors["green"]), width= 200, height= 50, color=colors["blue"])
+    qntdElements = ft.TextField(label="Digite o tamanho da senha",width=450, border_color="white", focused_border_color= colors["green"])
+    cSymbols = ft.Checkbox(label="Deve conter símbolos", label_style= ft.TextStyle(size=18), active_color=colors["green"])
+    cNumbers = ft.Checkbox(label="Deve conter números", label_style= ft.TextStyle(size=18), active_color=colors["green"])
+    cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas", label_style= ft.TextStyle(size=18), active_color=colors["green"])
+    cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas", label_style= ft.TextStyle(size=18), active_color=colors["green"])
+    btnSend = ft.ElevatedButton("Gerar Senha", on_click=updateProgram, style = ft.ButtonStyle(text_style= ft.TextStyle(size= 18, weight=ft.FontWeight.BOLD), shadow_color= colors["green"]), width= 200, height= 50, color=colors["blue"])
 
     senha = ft.Text("", size=18, color="white", width= 280, text_align= ft.TextAlign.CENTER)
     btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha, icon_color=colors["green"]) # REVER
