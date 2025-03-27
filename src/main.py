@@ -7,6 +7,10 @@ def main (page: ft.Page):
     page.adaptative = True
     page.window.height = 680
     page.window.width = 550
+    page.fonts = {
+        "titulo": "src/fonts/BebasNeue-Regular.ttf",
+        "texto" : "src/fonts/SourceCodePro-Regular.ttf"
+    }
 
     #design 
     colors = {
@@ -78,22 +82,22 @@ def main (page: ft.Page):
         page.update()
 
     # criação dos elementos
-    titulo = ft.Text("Password Generator", size=35, color="white", text_align= ft.TextAlign.CENTER)
+    titulo = ft.Text("Password Generator", size=35, color="white", text_align= ft.TextAlign.CENTER, font_family="titulo")
     btnBack = ft.IconButton(icon=ft.Icons.ARROW_BACK, on_click=voltarInicio, icon_color=colors["blue"], icon_size=30)
     logo = ft.Image("icon.png", width=60, height=60, fit= ft.ImageFit.CONTAIN)
     divider = ft.Divider(color= colors["blue"], thickness= 3)
     btnswitch = ft.IconButton(icon=ft.Icons.SWITCH_RIGHT_ROUNDED, on_click=switchInput, icon_color=colors["green"])
 
-    textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white", width= 480, text_align= ft.TextAlign.CENTER)
+    textPage = ft.Text("Informe os parâmetros para gerar a senha", size=18, color="white", width= 480, text_align= ft.TextAlign.CENTER, font_family="texto")
     slider = ft.Slider(min=4, max=20, divisions=16, label= "{value}", width=450, visible=False, active_color=colors["green"])
-    qntdElements = ft.TextField(label="Digite o tamanho da senha",width=450, border_color="white", focused_border_color= colors["green"])
-    cSymbols = ft.Checkbox(label="Deve conter símbolos", label_style= ft.TextStyle(size=18), active_color=colors["green"])
-    cNumbers = ft.Checkbox(label="Deve conter números", label_style= ft.TextStyle(size=18), active_color=colors["green"])
-    cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas", label_style= ft.TextStyle(size=18), active_color=colors["green"])
-    cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas", label_style= ft.TextStyle(size=18), active_color=colors["green"])
+    qntdElements = ft.TextField(label="Digite o tamanho da senha",width=450, border_color="white", text_style= ft.TextStyle(font_family="texto"), focused_border_color= colors["green"])
+    cSymbols = ft.Checkbox(label="Deve conter símbolos", label_style= ft.TextStyle(size=18, font_family="texto"), active_color=colors["green"])
+    cNumbers = ft.Checkbox(label="Deve conter números", label_style= ft.TextStyle(size=18, font_family="texto"), active_color=colors["green"])
+    cLettersMa = ft.Checkbox(label="Deve conter letras maiúsculas", label_style= ft.TextStyle(size=18, font_family="texto"), active_color=colors["green"])
+    cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas", label_style= ft.TextStyle(size=18, font_family="texto"), active_color=colors["green"])
     btnSend = ft.ElevatedButton("Gerar Senha", on_click=updateProgram, style = ft.ButtonStyle(text_style= ft.TextStyle(size= 18, weight=ft.FontWeight.BOLD), shadow_color= colors["green"]), width= 200, height= 50, color=colors["blue"])
 
-    senha = ft.Text("", size=18, color="white", width= 280, text_align= ft.TextAlign.CENTER)
+    senha = ft.Text("", size=18, color="white", width= 280, text_align= ft.TextAlign.CENTER, font_family="texto")
     btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha, icon_color=colors["green"]) # REVER
 
     #variáveis de layout
@@ -122,9 +126,9 @@ def main (page: ft.Page):
 
 ft.app(main, assets_dir="assets")
 
-#Resolver os botões da pag.2
-#aumentar o tamnhos das Checkbox pg.1
+
+
 #TENTAR mudar a cor do label no textfield
-#OPCIONAL --> trocar o textfield por um "slider"type
+
 #definir cores e fontes
 #fazer a build
