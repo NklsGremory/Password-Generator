@@ -31,6 +31,7 @@ def main (page: ft.Page):
 
         if(cNumbers.value == False and cSymbols.value == False and cLettersMa.value == False and cLettersMi.value == False):
             param = numeros
+        param += numeros if(cNumbers.value) else ""
         param += simbolos if(cSymbols.value) else ""
         param += letrasMa if(cLettersMa.value) else ""
         param += letrasMi if(cLettersMi.value) else ""
