@@ -97,8 +97,8 @@ def main (page: ft.Page):
     cLettersMi = ft.Checkbox(label="Deve conter letras minúsculas", label_style= ft.TextStyle(size=18, font_family="texto"), active_color=colors["green"])
     btnSend = ft.ElevatedButton("Gerar Senha", on_click=updateProgram, style = ft.ButtonStyle(text_style= ft.TextStyle(size= 18, weight=ft.FontWeight.BOLD), shadow_color= colors["green"]), width= 200, height= 50, color=colors["blue"])
 
-    senha = ft.Text("", size=18, color="white", width= 280, text_align= ft.TextAlign.CENTER, font_family="texto")
-    btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha, icon_color=colors["green"]) # REVER
+    senha = ft.Text("", size=22, color="white", width= 280, style=ft.TextStyle(weight=ft.FontWeight.BOLD), text_align= ft.TextAlign.CENTER, font_family="texto")
+    btnCopy = ft.IconButton(icon=ft.Icons.COPY_ALL_ROUNDED, on_click=copiarSenha, icon_color=colors["green"])
 
     #variáveis de layout
     lineInicial = ft.Row(
