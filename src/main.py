@@ -127,9 +127,4 @@ def main (page: ft.Page):
 
 ft.app(main, assets_dir="assets")
 
-
-
-#TENTAR mudar a cor do label no textfield
-
-#definir cores e fontes
 #fazer a build
